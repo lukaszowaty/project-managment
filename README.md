@@ -1,5 +1,6 @@
 # project-managment
-The application manages the projects. \n
+The application manages the projects.
+
 Import project-managment.sql to your database (admin:admin12345, user1:user12345)
 Features: 
 * add, update, delete project
