@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
+<head th:replace="fragments/header :: fragment-header" >
+
+	<title>Project Managment </title>
+</head>
+<body>
+	<div th:replace="fragments/header :: navbar" ></div>
+	<div class="container">
+    	<div class="row">
+			<div class="col-md-6 col-md-offset-3">
+				<div class="panel panel-login">
+					<div class="panel-heading">
+						<div class="row">
+							<div class="col-xs-6">
+								<a href="#" th:href="@{/loginEmployee}" id="login-form-link">Login</a>
+							</div>
+							<div class="col-xs-6">
+								<a href="#" th:href="@{/signup}" class="active" id="register-form-link">Register</a>
+							</div>
+						</div>
+						<hr />
+					</div>
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-lg-12">
+								
+								<form id="register-form" th:action="@{/signup}" method="post" role="form" th:object="${user}" style="display: block;">
+									<div class="form-group">
+										<span class="bg-danger pull-right" th:if="${usernameExists}">Your chosen login already exists</span>
+										<input type="text" name="username" th:value="*{username}" id="username" tabindex="1" class="form-control" placeholder="Username" />
+										<span class="text-danger" th:if="${#fields.hasErrors('username')}" th:errors="*{username}" ></span>
+									</div>
+									<div class="form-group">
+										<input type="password" th:value="*{password}" name="password" id="password" tabindex="2" class="form-control" placeholder="Password"/>
+										<span class="text-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}" ></span>
+									</div>
+									<div class="form-group">
+										<span class="bg-danger pull-right" th:if="${emailExists}">Your chosen email already exists</span>
+										<input type="email" name="email" th:value="*{email}" id="email" tabindex="1" class="form-control" placeholder="Email Address" />
+										<span class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}" ></span>
+									</div>
+									<div class="form-group">
+										<input type="text" th:value="*{firstName}" name="firstName" id="firstName" tabindex="2" class="form-control" placeholder="First name "/>
+										<span class="text-danger" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" ></span>
+									</div>
+									<div class="form-group">
+										<input type="text" th:value="*{lastName}" name="lastName" id="lastName" tabindex="2" class="form-control" placeholder="Last name "/>
+										<span class="text-danger" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" ></span>
+									</div>
+									<div class="form-group">
+										<input type="text" th:value="*{phoneNo}" name="phoneNo" id="phoneNo" tabindex="2" class="form-control" placeholder="Phone number "/>
+										<span class="text-danger" th:if="${#fields.hasErrors('phoneNo')}" th:errors="*{phoneNo}" ></span>
+									</div>
+									<div class="form-group">
+										<div class="row">
+											<div class="col-sm-6 col-sm-offset-3">
+												<input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="Register Now"/>
+											</div>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	    
+		
+	
+		
+</body>
+</html>

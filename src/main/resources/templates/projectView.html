@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
+<head th:replace="fragments/header :: fragment-header" >
+
+	<title>Content projectt</title>
+</head>
+<body>
+	<div th:replace="fragments/header :: navbar" ></div>
+	
+	<div class="container">
+	<div class="row">	
+		<h2>Content project</h2>
+
+		<form class="form-horizontal" th:object="${project}">
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Title </label>
+				<div class="col-md-10">
+					<p class="form-control-static" th:text="*{title}">title</p>
+				</div>
+			</div>
+			<div class="form-group">
+		    	<label class="col-sm-2 control-label">Description</label>
+		    	<div class="col-md-10">
+		    		<p class="form-control-static" th:text="*{description}">description</p>
+		    	</div>
+		  	</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Technologies</label>
+				<div class="col-md-10">
+					<p class="form-control-static" th:text="*{technologies}">technologies</p>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Date added</label>
+				<div class="col-md-10">
+					<p class="form-control-static" th:text="*{#temporals.format(date, 'dd-MM-yyyy')}">date added</p>
+				</div>
+			</div>	
+			
+		</form>
+		
+		<a th:href="@{/projectList/}">Back to list projects</a>
+		<br/><br/><br/>
+	</div>
+	</div>
+		
+</body>
+</html>

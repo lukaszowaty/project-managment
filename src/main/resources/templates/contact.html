@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
+<head th:replace="fragments/header :: fragment-header" >
+	<title>Contact</title>
+</head>
+<body>
+	<div th:replace="fragments/header :: navbar" ></div>
+	
+	<div class="container">
+	  <div class="row">	
+	  <h2>Contact</h2>
+	
+		<div th:if="${message}" data-th-class="${classCss}" role="alert">
+			<p th:text="${message}">Success</p>
+		</div>
+
+		<form method="post" th:object="${mail}" th:action="@{/contact}" style="max-width:600px" >
+			<div class="form-group">
+				<input class="form-control" th:field="*{name}" placeholder="Your name" />
+				<span class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}" ></span>
+			</div>
+			<div class="form-group">
+				<input class="form-control" th:field="*{subject}" placeholder="Subject" />
+				<span class="text-danger" th:if="${#fields.hasErrors('subject')}" th:errors="*{subject}" ></span>
+			</div>
+			<div class="form-group">
+				<input class="form-control" th:field="*{email}" placeholder="Email"/>
+				<span class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}" ></span>
+			</div>
+			<div class="form-group">
+				<textarea class="form-control" rows="10" th:field="*{message}" placeholder="Your message" ></textarea>
+				<span class="text-danger" th:if="${#fields.hasErrors('message')}" th:errors="*{message}"></span>
+			</div>
+			<input type="submit" value="Send message" />
+		</form>
+
+	  </div>
+	</div>
+	
+</body>
+</html>

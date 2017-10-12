@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
+<head th:replace="fragments/header :: fragment-header" >
+	<title>Contact</title>
+</head>
+<body>
+	<div th:replace="fragments/header :: navbar" ></div>
+	
+	<div class="container">
+	  <div class="row">
+		<h2>Create new project</h2>
+	
+		<form method="post" th:action="@{/admin/project/create}" style="max-width:600px" th:object="${project}">
+			<input type="hidden" th:field="*{id}" />
+			<div class="form-group">
+				<label>Title</label>
+				<input class="form-control" th:field="*{title}" />
+				<span class="text-danger" th:if="${#fields.hasErrors('title')}" th:errors="*{title}" ></span>
+			</div>
+			<div class="form-group">
+				<label>Description</label>
+				<input class="form-control" th:field="*{description}" />
+				<span class="text-danger" th:if="${#fields.hasErrors('description')}" th:errors="*{description}" ></span>
+			</div>
+			<div class="form-group">
+				<label>Technologies</label>
+				<input class="form-control" th:field="*{technologies}" placeholder="technologies1, technologies2" />
+				<span class="text-danger" th:if="${#fields.hasErrors('technologies')}" th:errors="*{technologies}"></span>
+			</div>
+			
+			<div class="form-group">
+			    <label class="col-sm-2 control-label">Active</label>
+			    <div class="col-md-10">
+					<div class="checkbox">
+						<label>
+							<input type="checkbox" th:field="*{active}"/>
+						</label>
+					</div>    		
+			    </div>
+			</div>
+			<input type="submit" value="Add project" />
+		</form>
+		
+		</div>
+	</div>
+
+</body>
+</html>
