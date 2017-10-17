@@ -39,7 +39,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	};
 	
 	@Override
-    protected void configure(HttpSecurity http) throws Exception {
+    	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
 			.antMatchers(PUBLIC_MATCHERS).permitAll().anyRequest().authenticated()
 			.and()
@@ -49,16 +49,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.and()
 			.authorizeRequests().antMatchers("/admin/*").access("hasRole('ROLE_ADMIN')")
 			.and()
-			.formLogin().loginPage("/loginUser");
-		
-        http
-        	.csrf().disable()
-            .formLogin().failureUrl("/loginUser?error").defaultSuccessUrl("/").loginPage("/loginUser").permitAll()
-            .and()
-            .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/?logout").deleteCookies("remember-me").permitAll()
-            .and()
-            .rememberMe();
-    }
+			.formLogin().loginPage("/loginUser").and()
+        		.csrf().disable()
+            		.formLogin().failureUrl("/loginUser?error").defaultSuccessUrl("/").loginPage("/loginUser").permitAll()
+            		.and()
+            		.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/?logout").deleteCookies("remember-me").permitAll()
+            		.and()
+            		.rememberMe().tokenValiditySeconds(180);
 	
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
